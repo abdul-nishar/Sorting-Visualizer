@@ -1,13 +1,13 @@
+import { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 import SortingVisualizer from "./components/SortingVisualizer";
 import NavBar from "./components/NavBar";
-import { useEffect, useState } from "react";
 import { mergeSortWithSteps } from "./algorithms/MergeSort";
 import BubbleSort from "./algorithms/BubbleSort";
-import "./app.css";
 import QuickSort from "./algorithms/QuickSort";
 import InsertionSortWithSteps from "./algorithms/InsertionSort";
 import SelectionSortWithSteps from "./algorithms/SelectionSort";
+import "./app.css";
 
 function createRandomArray(length) {
   const arr = [];
@@ -20,15 +20,40 @@ function createRandomArray(length) {
 function App() {
   useEffect(() => {
     document.body.style.overflow = "hidden";
-  });
+  }, []);
 
   const [Sortarr, setSortarr] = useState({
     array: createRandomArray(70),
+    blue: [],
+    pivot: [],
+    orange: [],
   });
 
+  // Use a ref to store active timeouts
+  const timeoutsRef = useRef([]);
+
+  const clearAllTimeouts = () => {
+    timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+    timeoutsRef.current = [];
+  };
+
+  const startAlgorithm = (steps, interval) => {
+    clearAllTimeouts();
+    for (let i = 0; i < steps.length; i++) {
+      const timeout = setTimeout(() => {
+        setSortarr(steps[i]);
+      }, i * interval);
+      timeoutsRef.current.push(timeout);
+    }
+  };
+
   const handleReset = () => {
+    clearAllTimeouts();
     setSortarr({
       array: createRandomArray(70),
+      blue: [],
+      pivot: [],
+      orange: [],
     });
   };
 
@@ -38,67 +63,31 @@ function App() {
       0,
       Sortarr.array.length - 1
     );
-    let i;
-    for (i = 0; i < steps.length - 1; i++) {
-      const step = steps[i];
-      setTimeout(() => {
-        setSortarr(step);
-      }, i * 45);
-    }
+    startAlgorithm(steps, 45);
   };
 
   const handleQuickSort = () => {
     const steps = QuickSort(Sortarr.array, 0, Sortarr.array.length - 1);
-    let i;
-    console.log(steps.length);
-    for (i = 0; i < steps.length; i++) {
-      const step = steps[i];
-      console.log(step.array.join(" "));
-      setTimeout(() => {
-        setSortarr(step);
-      }, i * 60);
-    }
+    startAlgorithm(steps, 60);
   };
 
   const handleInsertionSort = () => {
     const steps = InsertionSortWithSteps(Sortarr.array);
-    for (let i = 0; i < steps.length - 1; i++) {
-      let step = steps[i];
-      setTimeout(() => {
-        setSortarr(step);
-      }, i * 10);
-    }
+    startAlgorithm(steps, 10);
   };
 
   const handleSelectionSort = () => {
     const steps = SelectionSortWithSteps(Sortarr.array);
-    console.log(steps);
-    for (let i = 0; i < steps.length - 1; i++) {
-      const step = steps[i];
-      setTimeout(() => {
-        setSortarr(step);
-      }, i * 50);
-    }
+    startAlgorithm(steps, 50);
   };
 
   const handleBubbleSort = () => {
     const { steps } = BubbleSort(Sortarr.array);
-    let i;
-
-    for (i = 0; i < steps.length - 1; i++) {
-      const step = steps[i];
-      setTimeout(() => {
-        setSortarr(step);
-      }, i * 80);
-    }
+    startAlgorithm(steps, 80);
   };
 
   return (
-    <Box
-      minHeight={"103vh"}
-      sx={{ background: "#212121" }}
-      styles={{ scrollY: "hidden" }}
-    >
+    <Box minHeight={"103vh"} sx={{ background: "#212121" }}>
       <NavBar
         handleMergeSort={handleMergeSort}
         handleBubbleSort={handleBubbleSort}

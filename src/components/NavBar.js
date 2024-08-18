@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Button, Grid, ButtonGroup } from "@mui/material";
 
 function NavBar({
   handleMergeSort,
@@ -8,32 +8,26 @@ function NavBar({
   handleInsertionSort,
   handleSelectionSort,
 }) {
-  const handleResetClick = () => {
-    handleReset();
-  };
-
   return (
     <Grid
-      pt={2}
-      direction="row"
-      justifyContent="center"
-      alignItems="flexstart"
-      spacing={2}
       container
-      minHeight={54}
-      style={{ backgroundColor: "black" }}
+      justifyContent="center"
+      alignItems="center"
+      sx={{ backgroundColor: "black", paddingY: 2, minHeight: 54 }}
     >
-      <Grid marginRight={60} padding={2}>
-        <Button style={{ color: "red" }} onClick={handleResetClick}>
-          Reset Button
+      <Grid item marginRight={10}>
+        <Button sx={{ color: "red" }} onClick={handleReset}>
+          Reset
         </Button>
       </Grid>
-      <Grid padding={2}>
-        <Button onClick={handleMergeSort}>Merge Sort</Button>
-        <Button onClick={handleQuickSort}>Quick Sort</Button>
-        <Button onClick={handleInsertionSort}>Insertion Sort</Button>
-        <Button onClick={handleBubbleSort}>Bubble Sort</Button>
-        <Button onClick={handleSelectionSort}>Selection Sort</Button>
+      <Grid item>
+        <ButtonGroup variant="contained" color="primary">
+          <Button onClick={handleMergeSort}>Merge Sort</Button>
+          <Button onClick={handleQuickSort}>Quick Sort</Button>
+          <Button onClick={handleInsertionSort}>Insertion Sort</Button>
+          <Button onClick={handleBubbleSort}>Bubble Sort</Button>
+          <Button onClick={handleSelectionSort}>Selection Sort</Button>
+        </ButtonGroup>
       </Grid>
     </Grid>
   );

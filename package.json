@@ -1,7 +1,6 @@
 {
   "name": "sorting-visualizer",
   "version": "0.1.0",
-  "homepage": "http://mdafraz.github.io/sorting-visualizer",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.7.1",
