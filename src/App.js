@@ -1,24 +1,39 @@
-import { useEffect, useState, useRef } from "react";
-import { Box } from "@mui/material";
-import SortingVisualizer from "./components/SortingVisualizer";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./components/NavBar";
+import SortingVisualizer from "./components/SortingVisualizer";
+import { useState, useEffect, useRef } from "react";
 import { mergeSortWithSteps } from "./algorithms/MergeSort";
 import BubbleSort from "./algorithms/BubbleSort";
 import QuickSort from "./algorithms/QuickSort";
 import InsertionSortWithSteps from "./algorithms/InsertionSort";
 import SelectionSortWithSteps from "./algorithms/SelectionSort";
-import CycleSortWithSteps from "./algorithms/CycleSort";
 import HeapSortWithSteps from "./algorithms/HeapSort";
+import CycleSortWithSteps from "./algorithms/CycleSort";
 import CountingSortWithSteps from "./algorithms/CountingSort";
 import RadixSortWithSteps from "./algorithms/RadixSort";
 import BucketSortWithSteps from "./algorithms/BucketSort";
 import "./app.css";
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#3a3a3a",
+    },
+    secondary: {
+      main: "#f5a623",
+    },
+  },
+});
+
 function createRandomArray(length) {
   const arr = [];
+  const min = 0;
+  const max = 100;
+
   for (let i = 0; i < length; i++) {
-    arr.push(Math.floor(Math.random() * 350));
+    arr.push(Math.floor(Math.random() * (max - min + 1)) + min);
   }
+
   return arr;
 }
 
@@ -28,13 +43,12 @@ function App() {
   }, []);
 
   const [Sortarr, setSortarr] = useState({
-    array: createRandomArray(70),
+    array: createRandomArray(100),
     blue: [],
     pivot: [],
     orange: [],
   });
 
-  // Use a ref to store active timeouts
   const timeoutsRef = useRef([]);
 
   const clearAllTimeouts = () => {
@@ -55,7 +69,7 @@ function App() {
   const handleReset = () => {
     clearAllTimeouts();
     setSortarr({
-      array: createRandomArray(70),
+      array: createRandomArray(100),
       blue: [],
       pivot: [],
       orange: [],
@@ -91,13 +105,13 @@ function App() {
     startAlgorithm(steps, 80);
   };
 
-  const handleCycleSort = () => {
-    const steps = CycleSortWithSteps(Sortarr.array);
-    startAlgorithm(steps, 50); // Adjust the interval as needed
-  };
-
   const handleHeapSort = () => {
     const steps = HeapSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50);
+  };
+
+  const handleCycleSort = () => {
+    const steps = CycleSortWithSteps(Sortarr.array);
     startAlgorithm(steps, 50);
   };
 
@@ -117,22 +131,24 @@ function App() {
   };
 
   return (
-    <Box minHeight={"103vh"} sx={{ background: "#212121" }}>
-      <NavBar
-        handleMergeSort={handleMergeSort}
-        handleBubbleSort={handleBubbleSort}
-        handleReset={handleReset}
-        handleQuickSort={handleQuickSort}
-        handleInsertionSort={handleInsertionSort}
-        handleSelectionSort={handleSelectionSort}
-        handleCycleSort={handleCycleSort}
-        handleHeapSort={handleHeapSort}
-        handleCountingSort={handleCountingSort}
-        handleRadixSort={handleRadixSort}
-        handleBucketSort={handleBucketSort}
-      />
-      <SortingVisualizer Sortarr={Sortarr} />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <div className='container'>
+        <NavBar
+          handleMergeSort={handleMergeSort}
+          handleBubbleSort={handleBubbleSort}
+          handleReset={handleReset}
+          handleQuickSort={handleQuickSort}
+          handleInsertionSort={handleInsertionSort}
+          handleSelectionSort={handleSelectionSort}
+          handleHeapSort={handleHeapSort}
+          handleCycleSort={handleCycleSort}
+          handleCountingSort={handleCountingSort}
+          handleRadixSort={handleRadixSort}
+          handleBucketSort={handleBucketSort}
+        />
+        <SortingVisualizer Sortarr={Sortarr} />
+      </div>
+    </ThemeProvider>
   );
 }
 
