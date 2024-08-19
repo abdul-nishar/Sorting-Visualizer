@@ -1,6 +1,6 @@
 # Sorting Visualizer
 
-Sorting Visualizer is a web application built with React and Material-UI that helps users visually understand various sorting algorithms. This interactive tool allows you to see how algorithms like Merge Sort, Quick Sort, Bubble Sort, Insertion Sort, and Selection Sort operate on an array of numbers.
+Sorting Visualizer is a web application built with React and Material-UI that helps users visually understand various sorting algorithms. This interactive tool allows you to see how algorithms like Merge Sort, Quick Sort, Bubble Sort, Insertion Sort, Selection Sort, Heap Sort, Cycle Sort, Counting Sort, Radix Sort, and Bucket Sort operate on an array of numbers.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Sorting Visualizer is a web application built with React and Material-UI that he
 
 ## Features
 
-- **Multiple Sorting Algorithms:** Visualize various sorting algorithms including Merge Sort, Quick Sort, Bubble Sort, Insertion Sort, and Selection Sort.
+- **Multiple Sorting Algorithms:** Visualize various sorting algorithms including Merge Sort, Quick Sort, Bubble Sort, Insertion Sort, Selection Sort, Heap Sort, Cycle Sort, Counting Sort, Radix Sort, and Bucket Sort.
 - **Interactive Controls:** Start sorting, reset the array, and select different algorithms with ease.
 - **Custom Array Generation:** Generate a random array of numbers to visualize sorting on different datasets.
 
@@ -52,6 +52,11 @@ Once the application is running, you can use the navigation bar to select differ
 - **Insertion Sort:** Visualize the Insertion Sort algorithm.
 - **Bubble Sort:** Visualize the Bubble Sort algorithm.
 - **Selection Sort:** Visualize the Selection Sort algorithm.
+- **Heap Sort:** Visualize the Heap Sort algorithm.
+- **Cycle Sort:** Visualize the Cycle Sort algorithm.
+- **Counting Sort:** Visualize the Counting Sort algorithm.
+- **Radix Sort:** Visualize the Radix Sort algorithm.
+- **Bucket Sort:** Visualize the Bucket Sort algorithm.
 
 ## Available Sorting Algorithms
 
@@ -60,6 +65,11 @@ Once the application is running, you can use the navigation bar to select differ
 - **Bubble Sort**
 - **Insertion Sort**
 - **Selection Sort**
+- **Heap Sort**
+- **Cycle Sort**
+- **Counting Sort**
+- **Radix Sort**
+- **Bucket Sort**
 
 ## Technologies Used
 
