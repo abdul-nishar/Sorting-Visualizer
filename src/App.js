@@ -7,6 +7,11 @@ import BubbleSort from "./algorithms/BubbleSort";
 import QuickSort from "./algorithms/QuickSort";
 import InsertionSortWithSteps from "./algorithms/InsertionSort";
 import SelectionSortWithSteps from "./algorithms/SelectionSort";
+import CycleSortWithSteps from "./algorithms/CycleSort";
+import HeapSortWithSteps from "./algorithms/HeapSort";
+import CountingSortWithSteps from "./algorithms/CountingSort";
+import RadixSortWithSteps from "./algorithms/RadixSort";
+import BucketSortWithSteps from "./algorithms/BucketSort";
 import "./app.css";
 
 function createRandomArray(length) {
@@ -86,6 +91,31 @@ function App() {
     startAlgorithm(steps, 80);
   };
 
+  const handleCycleSort = () => {
+    const steps = CycleSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50); // Adjust the interval as needed
+  };
+
+  const handleHeapSort = () => {
+    const steps = HeapSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50);
+  };
+
+  const handleCountingSort = () => {
+    const steps = CountingSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50);
+  };
+
+  const handleRadixSort = () => {
+    const steps = RadixSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50);
+  };
+
+  const handleBucketSort = () => {
+    const steps = BucketSortWithSteps(Sortarr.array);
+    startAlgorithm(steps, 50);
+  };
+
   return (
     <Box minHeight={"103vh"} sx={{ background: "#212121" }}>
       <NavBar
@@ -95,6 +125,11 @@ function App() {
         handleQuickSort={handleQuickSort}
         handleInsertionSort={handleInsertionSort}
         handleSelectionSort={handleSelectionSort}
+        handleCycleSort={handleCycleSort}
+        handleHeapSort={handleHeapSort}
+        handleCountingSort={handleCountingSort}
+        handleRadixSort={handleRadixSort}
+        handleBucketSort={handleBucketSort}
       />
       <SortingVisualizer Sortarr={Sortarr} />
     </Box>

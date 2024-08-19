@@ -7,6 +7,11 @@ function NavBar({
   handleQuickSort,
   handleInsertionSort,
   handleSelectionSort,
+  handleCycleSort,
+  handleHeapSort,
+  handleCountingSort,
+  handleRadixSort,
+  handleBucketSort
 }) {
   return (
     <Grid
@@ -27,6 +32,11 @@ function NavBar({
           <Button onClick={handleInsertionSort}>Insertion Sort</Button>
           <Button onClick={handleBubbleSort}>Bubble Sort</Button>
           <Button onClick={handleSelectionSort}>Selection Sort</Button>
+          <Button onClick={handleCycleSort}>Cycle Sort</Button>
+          <Button onClick={handleHeapSort}>Heap Sort</Button>
+          <Button onClick={handleCountingSort}>Counting Sort</Button>
+          <Button onClick={handleRadixSort}>Radix Sort</Button>
+          <Button onClick={handleBucketSort}>Bucket Sort</Button>
         </ButtonGroup>
       </Grid>
     </Grid>
